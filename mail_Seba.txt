@@ -1,0 +1,51 @@
+*) Hagan un archivo para cada solitario :).
+
+SOLUCIONADO) Mazo, lean la documentación e implementen lo que dice la documentación. palos puede ser 1,
+2 o 4 y mazos puede ser cualquier número entero.
+
+SOLUCIONADO) Sobre el mazo, cuando uno mezcla varios mazos de cartas los mezcla todos juntos. Si no,
+salen las 52 cartas de un mazo seguidas de las 52 cartas del otro mazo, cuando uno quiere jugar con
+104 cartas de dos mazos, ¿se entiende?
+
+*) Me hace mucho ruido esto: "if forzar or self.es_vacia() and not self.valor_inicial:",
+no estoy seguro (ni quiero fijarme) cuál es la precedencia entre los operadores and y or...
+pero por favor pongan un paréntesis alrededor de la expresión booleana que quisieron escribir.
+Es por un tema de claridad.
+
+SOLUCIONADO) Un espacio entre carta y carta en str() de PilaCartas no estaría mal :).
+
+SOLUCIONADO) Fíjense que tanto en Clásico como en Spider si se indica o pila o descarte sin destino la interfaz
+tiene que intentar sola mover esa carta a alguna de las fundaciones, eso no está implementado.
+#Esto es lo que implemente para el eliminador, y ya lo adapte a los demas.
+
+CREO QUE SE SOLUCIONO CON LO DE ARRIBA) Al menos en clásico hay muchas cosas que no hacen nada pero
+tampoco tiran error (ejemplo: lo quedije antes). Toda jugada que no pueda ser procesada, error, etc.
+tiene que levantar una excepción. El único caso en el que no se levanta excepción es si la jugada
+es correcta.
+
+
+SOLUCIONADO) Ojo, (y como dice el comentario "Ver mesa" de la documentación) no está garantizado que la jugada
+del usuario tenga dos parámetros y mida 2. Mesa no sabe las reglas del juego, eso lo saben ustedes,
+y Eliminador les explota si la jugada mide 1.
+
+*) Supongo que ya vieron la aclaración sobre el error de documentación que mandé a la lista. La cagada
+me la mandé yo, pero por consistencia inviertan ASCENDENTE y DESCENDENTE en criterio() y acomoden las
+declaraciones. O sea, se dieron cuenta de que estaba al revés pero sería preferible que queden bien las
+implementaciones de los juegos (o sea, cuando crean las fundaciones está bien que sea ASCENDENTE porque
+se apilan de la A a la K, y con el error les quedó al revés).
+
+JAJAJAJA CREO QUE ESTA) Si no arreglan termino() de Spider y de Clásico se van a recursar derecho :).
+¿Cómo van a acceder a los items de la pila, cheeee?, ¡es una pila!, ¡no pueden acceder a las cosas
+internas de la implementación!, tienen tope() y es_vacia() para arreglarse :).
+
+CREO QUE ESTA) La documentación de Spider dice que hay 10 pilas y que pasa algo en las pilas 1, 4, 7 y 10...
+¿no les hace ruido estar iterando sobre una i con range(10) y preguntar if i in (1, 4, 7, 10).
+Una vez que arreglen eso, ¿hay algo que puedan hacer con el operador módulo?
+
+
+   Ahora sí, de lo que preguntaron, fíjense cómo lo resolví en SolitarioEjemplo; el tema es que
+   se puede mover (según el juego) de PILA a PILA, de PILA a FUNDACION, de FUNDACION a PILA, de
+   DESCARTE a PILA, de DESCARTE a FUNDACION y de PILA a DESCARTE. En el caso de pila y fundación
+   sí hay lugar e índice, pero en el de descarte hay uno solo.
+
+   Tiene mucho más sentido que digan de qué pila a qué pila, sin importar su lugar en el tablero.
