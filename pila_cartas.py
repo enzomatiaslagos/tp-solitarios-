@@ -50,7 +50,7 @@ class PilaCartas:
         """Apila una carta en la pila. Si forzar es True desactiva los chequeos
         sobre el valor_inicial y el criterio_apilar.
         Levanta SolitarioError en caso de no poder apilar."""
-        if forzar or self.es_vacia() and not self.valor_inicial:
+        if forzar or (self.es_vacia() and not self.valor_inicial):
             self.items.append(carta)
         elif self.es_vacia():
             if carta.valor == self.valor_inicial:
@@ -59,7 +59,7 @@ class PilaCartas:
                 raise SolitarioError("No se puede apilar la carta")
         elif not self.es_vacia():
             c = self.criterio_apilar
-            if c(self.tope(), carta):
+            if c(carta, self.tope()):
                 self.items.append(carta)
             else:
                 raise SolitarioError("No se puede apilar la carta")
