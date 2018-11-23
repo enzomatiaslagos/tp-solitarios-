@@ -35,8 +35,6 @@ class SolitarioThumbAndPouch:
                 return False
         return self.mesa.mazo.es_vacia() and self.mesa.descarte.es_vacia()
 
-
-
     def jugar(self, jugada):
         """Efectúa una movida.
             La jugada es una lista de pares (PILA, numero). (Ver mesa.)

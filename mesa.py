@@ -8,6 +8,7 @@ DESCARTE = 3
 SALIR = 4
 
 
+
 class Mesa:
     """Representa la mesa del juego del solitario. Como atributos posee:
         fundaciones: Lista de PilaCartas. Representa las fundaciones del juego,

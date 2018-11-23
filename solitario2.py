@@ -59,6 +59,7 @@ class SolitarioClasico:
 
 
 
+
     def jugar(self, jugada):
         """Efectúa una movida.
             La jugada es una lista de pares (PILA, numero). (Ver mesa.)
