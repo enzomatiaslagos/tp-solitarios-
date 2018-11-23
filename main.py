@@ -48,6 +48,7 @@ def pedir_juego(juegos):
 
     return juegos[n - 1]
 
+
 def main():
     resume = False
     seed = int(datetime.datetime.now().timestamp())
