@@ -24,14 +24,38 @@ class SolitarioClasico:
             self.mesa.pilas_tablero[i].tope().voltear()
 
     def termino(self):
-        """Avisa si el juego se terminó. Devuelve False si el juego no termino, True en caso contrario"""
-        for pila in self.mesa.pilas_tablero:
-            if not pila.es_vacia():
+        """Avisa si el juego se terminó."""
+        if not self.gano() and self.existen_movimientos():
+            return False
+        else:
+            return True
+
+    def gano(self):
+        """Devuelve True si gano, False en caso contrario"""
+        for fundacion in self.mesa.fundaciones:
+            if fundacion.tope().valor != 13:
                 return False
-        if self.mesa.mazo.es_vacia() and self.mesa.descarte.es_vacia():
+        return True
+
+    def existen_movimientos(self):
+        """Analiza si existen movimientos válidos para seguir jugando. Devuelve True si existen y False en caso contrario"""
+        no = 0
+        if self.mesa.mazo.es_vacia():
             for fundacion in self.mesa.fundaciones:
-                if fundacion.tope().valor == 13:
-                    return True  # GANO
+                try:
+                    for pila in self.mesa.pilas_tablero:
+                        fundacion.mover(pila)
+                    fundacion.apilar(self.mesa.descarte.tope())
+                except SolitarioError:
+                    no += 1
+            for pila in self.mesa.pilas_tablero:
+                try:
+                    pila.apilar(self.mesa.descarte.tope())
+                except SolitarioError:
+                    no += 1
+        if not self.mesa.mazo.es_vacia() or no != 2:
+            return True
+        return False
 
 
     def jugar(self, jugada):

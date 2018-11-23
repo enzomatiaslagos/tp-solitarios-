@@ -29,7 +29,8 @@ class SolitarioEliminador:
         for pila in self.mesa.pilas_tablero:
             if not pila.es_vacia():
                 return False
-        return True
+        return self.mesa.mazo.es_vacia() and self.mesa.descarte.es_vacia()
+
 
     def jugar(self, jugada):
         """Efectúa una movida.
