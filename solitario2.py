@@ -16,10 +16,10 @@ class SolitarioClasico:
         self.mesa.descarte = PilaCartas()
 
         for i in range(4):
-            self.mesa.fundaciones.append(PilaCartas(criterio_apilar=criterio(palo=MISMO_PALO, orden=DESCENDENTE), valor_inicial=1))
+            self.mesa.fundaciones.append(PilaCartas(criterio_apilar=criterio(palo=MISMO_PALO, orden=ASCENDENTE), valor_inicial=1))
 
         for i in range(4):
-            self.mesa.pilas_tablero.append(PilaCartas(pila_visible=True, criterio_apilar=criterio(palo=DISTINTO_COLOR, orden=ASCENDENTE), criterio_mover=0))
+            self.mesa.pilas_tablero.append(PilaCartas(pila_visible=True, criterio_apilar=criterio(palo=DISTINTO_COLOR, orden=DESCENDENTE), criterio_mover=0))
             self.mesa.pilas_tablero[i].apilar(self.mesa.mazo.desapilar(), forzar=True)
             self.mesa.pilas_tablero[i].tope().voltear()
 
