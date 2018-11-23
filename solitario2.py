@@ -24,12 +24,14 @@ class SolitarioClasico:
             self.mesa.pilas_tablero[i].tope().voltear()
 
     def termino(self):
-        """Avisa si el juego se terminó."""
-
+        """Avisa si el juego se terminó. Devuelve False si el juego no termino, True en caso contrario"""
         for pila in self.mesa.pilas_tablero:
             if not pila.es_vacia():
                 return False
-        return self.mesa.mazo.es_vacia() and self.mesa.descarte.es_vacia()
+        if self.mesa.mazo.es_vacia() and self.mesa.descarte.es_vacia():
+            for fundacion in self.mesa.fundaciones:
+                if fundacion.tope().valor == 13:
+                    return True  # GANO
 
 
     def jugar(self, jugada):

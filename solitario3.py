@@ -29,6 +29,7 @@ class SolitarioThumbAndPouch:
 
     def termino(self):
         """Avisa si el juego se terminó."""
+
         for pila in self.mesa.pilas_tablero:
             if not pila.es_vacia():
                 return False
